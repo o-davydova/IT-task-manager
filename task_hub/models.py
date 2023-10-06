@@ -32,16 +32,16 @@ class TaskType(models.Model):
 
 
 class Task(models.Model):
-    LOW = 'L'
-    MEDIUM = 'M'
-    HIGH = 'H'
-    URGENT = 'U'
+    LOW = "4"
+    MEDIUM = "3"
+    HIGH = "2"
+    URGENT = "1"
 
     PRIORITY_CHOICES = [
-        (LOW, 'Low'),
-        (MEDIUM, 'Medium'),
-        (HIGH, 'High'),
-        (URGENT, 'Urgent'),
+        (LOW, "Low"),
+        (MEDIUM, "Medium"),
+        (HIGH, "High"),
+        (URGENT, "Urgent"),
     ]
 
     name = models.CharField(max_length=255)
@@ -59,6 +59,9 @@ class Task(models.Model):
         related_name="tasks"
     )
     assignees = models.ManyToManyField(Worker, related_name="tasks")
+
+    class Meta:
+        ordering = ["priority", "deadline"]
 
     def __str__(self):
         return f"{self.name} - {self.get_priority_display()}"
