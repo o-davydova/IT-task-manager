@@ -7,8 +7,11 @@ from task_hub.forms import UserLoginForm
 from task_hub.models import Worker, Task, TaskType, Position
 
 
-class IndexView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "task_hub/index.html"
+class TaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+
+    def get_queryset(self):
+        return Task.objects.filter(assignees=self.request.user).select_related("task_type")
 
 
 class CustomLogoutView(LogoutView):
