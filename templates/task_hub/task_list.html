@@ -1,100 +1,38 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% block content %}
-
-  <div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
-    <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-      <div class="container-fluid">
-        <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" title="Back to Home Page" data-placement="bottom" target="_blank">
-          IT Task manager
-        </a>
-      </div>
-    </nav>
-  </div></div></div>
-
-  <header class="header-2">
-    <div class="page-header min-vh-65 relative align-items-start" style="background-image: url('{% static 'img/unsplash-images/shubham-dhage-unsplash.jpg' %}');">
-
-      <div class="container mt-lg-8 z-index-2">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto">
-            <h1 class="text-white">IT Task Manager</h1>
-            <p class="text-white lead">
-              Welcome to a world of simplicity and productivity.
-              Our task management platform is designed to make your work life easier.
-              Stay organized, collaborate seamlessly, and achieve your goals with ease.
-              Let's work together efficiently!
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="position-absolute w-100 bottom-0">
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
-          <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-          </defs>
-          <g class="moving-waves">
-            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
-            <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
-            <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
-            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  </header>
-
   <section>
     <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
-      <h3 class="ms-3 mt-2 mb-3 text-dark"><span><i class="fas fa-tasks"></i></span> Task list</h3>
+      <h3 class="ms-3 mt-2 mb-3 text-dark"><span><i class="fas fa-stream"></i></span> Task list</h3>
       <div class="row">
         <div class="col">
           <div class="row">
             {% for task in task_list %}
               <div class="col-4 mb-3">
-                <div class="border-radius-xl blur shadow-lg">
-                  <div class="container border-bottom">
-                    <div class="row py-2">
-                      <div class="col-lg-6 me-auto">
-                        <p class="lead text-dark pt-1 mb-0">{{ task.name }}</p>
+                <div class="card border-radius-xl blur shadow-lg">
+                  <div class="card-header" style="height: 5rem;">
+                    <div class="row">
+                      <div class="col-lg-8 me-auto">
+                        <span class="text-bold mt-0">{{ task.name }}</span>
                       </div>
                       <div class="col-lg-4 text-end m-0">
-                        {% if task.get_priority_display == "Low" %}
-                          <span class="badge bg-gradient-secondary m-0" style="width: 5rem">
-                            {{ task.get_priority_display }}
-                          </span>
-                        {% elif task.get_priority_display == "Medium" %}
-                          <span class="badge bg-gradient-primary m-0" style="width: 5rem">
-                            {{ task.get_priority_display }}
-                          </span>
-                        {% elif task.get_priority_display == "High" %}
-                          <span class="badge bg-gradient-warning m-0" style="width: 5rem">
-                            {{ task.get_priority_display }}
-                          </span>
-                        {% elif task.get_priority_display == "Urgent" %}
-                          <span class="badge bg-gradient-danger m-0" style="width: 5rem">
-                            {{ task.get_priority_display }}
-                          </span>
-                        {% endif %}
+                        {% include "includes/task_priority.html" %}
                       </div>
                     </div>
                   </div>
-                  <div class="container-fluid">
-                    <div class="row py-3 align-items-center">
+                  <div class="card-body" style="height: 7rem;">
+                    <div class="row align-items-center">
                       <p class="card-text text-muted">Status: {% if task.is_completed %}Completed{% else %}Open{% endif %}
-                        <br>{{ task.description }}
-                        <br><span><i class="fas fa-calendar"></i></span>
-                        {{ task.deadline }}
+                        <br><span>{{ task.description|truncatewords:10 }}</span>
+                        <br><span><i class="fas fa-calendar"></i> {{ task.deadline }}</span>
                       </p>
                     </div>
                   </div>
-                  <div class="container-fluid">
+                  <div class="card-footer">
                     <div class="row">
-                      <a type="button" class="btn btn-light" href="#">View Details</a>
+                      <a href="{% url 'task-hub:task-detail' pk=task.id %}" class="text-primary text-md-end icon-move-right">
+                        View details
+                        <i class="fas fa-arrow-right me-1"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -105,5 +43,4 @@
       </div>
     </div>
   </section>
-
 {% endblock %}

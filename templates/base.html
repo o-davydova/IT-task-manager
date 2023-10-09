@@ -21,6 +21,14 @@
 </head>
 
 <body class="min-vh-100">
+  {% block navigation %}
+    {% include 'includes/navbar.html' %}
+  {% endblock %}
+
+  {% block header %}
+    {% include 'includes/header.html' %}
+  {% endblock %}
+
   {% block content %}{% endblock %}
 </body>
 </html>
