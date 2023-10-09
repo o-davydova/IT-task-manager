@@ -1,10 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
+from django.contrib.auth.views import LogoutView
+from django.shortcuts import redirect, render
 from django.views import generic
 
-from task_hub.forms import UserLoginForm
-from task_hub.models import Worker, Task, TaskType, Position
+from task_hub.models import Task
+
+
+class IndexView(generic.View):
+    def get(self, request):
+        return redirect('task-hub:task-list')
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
