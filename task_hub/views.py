@@ -18,5 +18,9 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return Task.objects.filter(assignees=self.request.user).select_related("task_type")
 
 
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+
+
 class CustomLogoutView(LogoutView):
     next_page = '/accounts/login'
