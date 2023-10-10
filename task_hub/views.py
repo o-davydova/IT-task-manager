@@ -10,7 +10,7 @@ from task_hub.models import Task
 
 class IndexView(generic.View):
     def get(self, request):
-        return redirect('task-hub:task-list')
+        return HttpResponseRedirect(reverse_lazy("task-hub:task-list"))
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
