@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from task_hub.forms import TaskForm
 from task_hub.models import Task, Worker
 
 
@@ -32,7 +33,7 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("task-hub:task-list")
 
 
