@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
-from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_hub.forms import TaskForm
-from task_hub.models import Task, Worker
+from task_hub.models import Task
 
 
 class IndexView(generic.View):
@@ -34,6 +34,13 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
+
+    def get_success_url(self):
+        return reverse("task-hub:task-detail", kwargs={'pk': self.object.pk})
+
+
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
     success_url = reverse_lazy("task-hub:task-list")
 
 
