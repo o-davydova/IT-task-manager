@@ -11,12 +11,28 @@
             <span class="h5">{% include "includes/task_priority.html" %}</span>
           </div>
         </div>
+
+        <div class="col-sm-1">
+          <div class="dropdown">
+            <button class="navbar-toggler ms-5 shadow-none collapsed" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item border-radius-md" href="#"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>
+              <li><a class="dropdown-item border-radius-md" href="#"><i class="fa fa-trash-o  me-1" aria-hidden="true"></i> Delete </a></li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
-      <div class="row  mt-3">
+      <div class="row mt-3">
         <div class="col">
-          <span class="lead h5">Task type:</span>
-          <span class="lead">{{ task.task_type }}</span>
+          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Task type">{{ task.task_type }}</span>
         </div>
       </div>
 
@@ -33,7 +49,28 @@
         </div>
       </div>
 
-      <div class="row mt-5 mb-3">
+      <div class="row justify-content-md-center">
+        <span class="text-gradient text-primary h5 mt-4 mb-3">Assignee{{ num_assignee|pluralize }}: {{ num_assignee }}</span>
+        <div class="col">
+          <div class="row lead h5">
+              <div class="col-3">Position</div>
+              <div class="col-3">First name</div>
+              <div class="col-3">Last name</div>
+              <div class="col-3">Username</div>
+          </div>
+          <div class="row lead">
+            {% for assignee in task.assignees.all %}
+              <div class="col-3">{{ assignee.position }}</div>
+              <div class="col-3">{{ assignee.first_name }}</div>
+              <div class="col-3">{{ assignee.last_name }}</div>
+              <div class="col-3"><a class="link-primary" href="#"><div><span>{{ assignee.username }}</span></div></a></div>
+              <hr class="horizontal dark">
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3 mb-3">
         <a href="{% url 'task-hub:task-list' %}" class="lead text-primary icon-move-left">
           <i class="fas fa-arrow-left me-1"></i>
           Back to the task list
