@@ -16,6 +16,7 @@
       {{ form|crispy }}
     <div class="row">
       <div class="col-md-12 text-end">
+        <a href="{% url 'task-hub:task-list' %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
         <input type="submit" value="{{ object|yesno:"Update,Create" }}" class="btn btn-lg bg-gradient-primary">
       </div>
     </div>
