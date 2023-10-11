@@ -52,6 +52,14 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
         return reverse("task-hub:task-detail", kwargs={'pk': self.object.pk})
 
 
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskForm
+
+    def get_success_url(self):
+        return reverse_lazy("task-hub:task-detail", kwargs={'pk': self.object.pk})
+
+
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task-hub:task-list")
