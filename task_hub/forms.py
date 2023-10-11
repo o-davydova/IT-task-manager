@@ -30,6 +30,14 @@ class TaskForm(forms.ModelForm):
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    deadline = forms.DateField(
+        widget=forms.DateInput(
+            attrs={
+                "class": "form-control datepicker",
+                "placeholder": "Please select date",
+            }
+        )
+    )
 
     class Meta:
         model = Task
