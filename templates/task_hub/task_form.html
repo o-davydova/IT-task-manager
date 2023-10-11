@@ -11,15 +11,18 @@
         </div>
       </div>
     </div>
+
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ form|crispy }}
+
     <div class="row">
       <div class="col-md-12 text-end">
-        <a href="{% url 'task-hub:task-list' %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
+        <a href="{% url 'task-hub:task-detail' pk=object.id %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
         <input type="submit" value="{{ object|yesno:"Update,Create" }}" class="btn btn-lg bg-gradient-primary">
       </div>
     </div>
+
     </form>
   </div>
 {% endblock %}
