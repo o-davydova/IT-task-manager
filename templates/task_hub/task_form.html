@@ -3,11 +3,11 @@
 
 {% block content %}
   <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
-    <div class="row">
+    <div class="row my-3">
       <div class="col">
         <div class="d-flex align-items-center">
-          <span class="h1 me-3">{{ task.name }}</span>
-          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark h6">{{ object|yesno:"Update,Create" }} task</span>
+          {% if task.name %}<span class="h1 me-2">{{ task.name }}</span>{% endif %}
+          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark h6">{{ object|yesno:"Update the,Create a" }} task</span>
         </div>
       </div>
     </div>
@@ -18,8 +18,13 @@
 
     <div class="row">
       <div class="col-md-12 text-end">
-        <a href="{% url 'task-hub:task-detail' pk=object.id %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
-        <input type="submit" value="{{ object|yesno:"Update,Create" }}" class="btn btn-lg bg-gradient-primary">
+        {% if object %}
+          <a href="{% url 'task-hub:task-detail' pk=object.id %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
+          <input type="submit" value="Update" class="btn btn-lg bg-gradient-primary">
+        {% else %}
+          <a href="{% url 'task-hub:task-list' %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
+          <input type="submit" value="Create" class="btn btn-lg bg-gradient-primary">
+        {% endif %}
       </div>
     </div>
 
