@@ -28,17 +28,17 @@
             {% for task in task_list %}
               <div class="col-4 mb-3">
                 <div class="card border-radius-xl blur shadow-lg">
-                  <div class="card-header" style="height: 5rem;">
-                    <div class="row">
-                      <div class="col-lg-8 me-auto">
+                  <div class="card-header bg-white py-0 px-2 d-flex align-items-center justify-content-center" style="height: 5rem;">
+                    <div class="row align-items-center w-100">
+                      <div class="col-lg-8 my-0">
                         <span class="text-bold mt-0">{{ task.name }}</span>
                       </div>
-                      <div class="col-lg-4 text-end m-0">
+                      <div class="col-lg-4 text-end my-0">
                         {% include "includes/task_priority.html" %}
                       </div>
                     </div>
                   </div>
-                  <div class="card-body" style="height: 7rem;">
+                  <div class="card-body bg-gray-100 py-2" style="height: 7rem;">
                     <div class="row align-items-center">
                       <p class="card-text text-muted">Status: {% if task.is_completed %}Completed{% else %}Open{% endif %}
                         <br><span>{{ task.description|truncatewords:10 }}</span>
@@ -46,7 +46,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="card-footer">
+                  <div class="card-footer bg-gray-100  py-2">
                     <div class="row">
                       <a href="{% url 'task-hub:task-detail' pk=task.id %}" class="text-primary text-md-end icon-move-right">
                         View details
