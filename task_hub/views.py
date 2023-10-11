@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_hub.forms import TaskForm
+from task_hub.forms import TaskForm, TaskSearchForm
 from task_hub.models import Task
 
 
@@ -16,8 +16,21 @@ class IndexView(generic.View):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskSearchForm(
+            initial={"name": name}
+        )
+        return context
+
     def get_queryset(self):
-        return Task.objects.filter(assignees=self.request.user).select_related("task_type")
+        form = TaskSearchForm(self.request.GET)
+        queryset = Task.objects.all().select_related("task_type")
+
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
