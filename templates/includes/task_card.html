@@ -1,0 +1,92 @@
+{% if task.is_completed %}
+  <div class="col-4 mb-3"><div class="card border-radius-xl blur shadow-sm opacity-4">
+    <div class="bg-secondary card-header text-white py-0 px-2 d-flex align-items-center justify-content-center" style="height: 5rem;">
+      <div class="row align-items-center w-100">
+        <div class="col-lg-8 my-0">
+          <span class="text-bold mt-0">{{ task.name }}</span>
+        </div>
+        <div class="col-lg-4 text-end my-0">
+          {% include "includes/task_priority.html" %}
+        </div>
+      </div>
+    </div>
+
+    <hr class="horizontal bg-dark dark p-0 m-0">
+
+    <div class="card-body bg-secondary py-2" style="height: 8rem;">
+      <div class="row align-items-center">
+        <p class="card-text text-white">
+          {% if user in task.assignees.all %}
+            <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white-50"
+                  data-bs-toggle="tooltip" data-bs-placement="bottom"
+                  title="Assigned to you">assigned
+            </span>
+          {% endif %}
+          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white-50"
+                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Status">{% if task.is_completed %}Completed{% else %}Open{% endif %}
+          </span>
+          <br><span class="text-white-50">{{ task.description|truncatewords:10 }}</span>
+          <br><span class="text-white-50"><i class="fas fa-calendar mt-2"></i> {{ task.deadline }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer  bg-secondary pt-0 pb-3">
+      <div class="row">
+        <a href="{% url 'task-hub:task-detail' pk=task.id %}" class="text-white text-md-end icon-move-right">
+          View details
+          <i class="fas fa-arrow-right me-1"></i>
+        </a>
+      </div>
+    </div>
+  </div></div>
+
+{% else %}
+
+   <div class="col-4 mb-3"><div class="card border-radius-xl blur shadow-lg">
+    <div class="card-header py-0 px-2 d-flex align-items-center justify-content-center" style="height: 5rem;">
+      <div class="row align-items-center w-100">
+      <div class="col-lg-8 my-0">
+        <span class="text-bold mt-0">{{ task.name }}</span>
+      </div>
+      <div class="col-lg-4 text-end my-0">
+        {% include "includes/task_priority.html" %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body bg-gray-100 py-2" style="height: 8rem;">
+    <div class="row align-items-center">
+      <p class="card-text text-muted">
+        {% if user in task.assignees.all %}
+          <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Assigned to you">assigned
+          </span>
+        {% endif %}
+        <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Status">{% if task.is_completed %}Completed{% else %}Open{% endif %}
+        </span>
+        <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Status">{{ task.task_type }}
+        </span>
+        <br><span>{{ task.description|truncatewords:10 }}</span>
+        <br><span><i class="fas fa-calendar mt-2"></i> {{ task.deadline }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="card-footer bg-gray-100 pt-0 pb-3">
+    <div class="row">
+      <a href="{% url 'task-hub:task-detail' pk=task.id %}" class="text-primary text-md-end icon-move-right">
+        View details
+        <i class="fas fa-arrow-right me-1"></i>
+      </a>
+    </div>
+  </div>
+</div></div>
+
+{% endif %}
