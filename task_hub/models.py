@@ -61,7 +61,7 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker, related_name="tasks")
 
     class Meta:
-        ordering = ["priority", "deadline"]
+        ordering = ["is_completed", "priority", "deadline"]
 
     def __str__(self):
         return f"{self.name} - {self.get_priority_display()}"
