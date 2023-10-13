@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+  <section>
+    <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
+
+      <div class="row mt-3">
+        <div class="col">
+          <div class="d-flex align-items-center">
+            <span class="h3 me-3"><i class="fa fa-bookmark-o"></i></span>
+            <span class="h3 me-3">{{ tasktype.name }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-1 text-end">
+          <div class="dropdown">
+            <button class="navbar-toggler shadow-none collapsed" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-blur px-2 py-3 me-n3" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:task-type-update' pk=tasktype.id %}"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>
+              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:task-type-delete' pk=tasktype.id %}"><i class="fa fa-trash-o  me-1" aria-hidden="true"></i> Delete </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <span class="h3 mt-4 mb-3">Task{{ num_tasks|pluralize }}: {{ num_tasks }}</span>
+        <div class="col">
+          {% if num_tasks %}
+            <div class="row lead h5">
+              <div class="col-3">Name</div>
+              <div class="col-3">Deadline</div>
+              <div class="col-3">Description</div>
+            </div>
+            {% for task in tasktype.tasks.all %}
+              <a class="row lead" href="{% url 'task-hub:task-detail' pk=task.id %}">
+                <div class="col-3">{{ task.name }}</div>
+                <div class="col-3">{{ task.deadline }}</div>
+                <div class="col-6">{{ task.description|truncatewords:15 }}</div>
+                <hr class="horizontal dark mt-3">
+              </a>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+
+      <div class="row mt-3 mb-3">
+        <a href="{% url 'task-hub:task-type-list' %}" class="lead text-primary icon-move-left">
+          <i class="fas fa-arrow-left me-1"></i>
+          Back to the task type list
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
