@@ -10,6 +10,7 @@ from task_hub.views import (
     TaskTypeListView,
     TaskTypeDetailView,
     TaskTypeUpdateView,
+    TaskTypeCreateView,
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     path("task-types/", TaskTypeListView.as_view(), name="task-type-list"),
+    path("task-types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
     path("task-types/<int:pk>/", TaskTypeDetailView.as_view(), name="task-type-detail"),
     path("task-types/<int:pk>/update/", TaskTypeUpdateView.as_view(), name="task-type-update"),
 ]
