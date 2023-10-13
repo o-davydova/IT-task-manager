@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_hub.forms import TaskForm, TaskSearchForm
-from task_hub.models import Task
+from task_hub.models import Task, TaskType
 
 
 class IndexView(generic.View):
@@ -63,6 +63,10 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task-hub:task-list")
+
+
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
 
 
 class CustomLogoutView(LogoutView):
