@@ -1,20 +1,75 @@
 <div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
-    <nav class="navbar blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 start-0 end-0 mx-4 p-0">
-      <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+    <div class="container-fluid">
+      <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" title="Back to Home Page" data-bs-toggle="tooltip" data-bs-placement="bottom">
+        IT Task manager
+      </a>
+      <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+              Task types
+              <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-animation dropdown-lg mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
+              <div class="d-none d-lg-block">
+                <li class="nav-item ">
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
+                    <div class="d-flex">
+                      <div>
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">ADD</h6>
+                        <span class="text-sm">Create new task type</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:task-type-list' %}">
+                    <div class="d-flex">
+                      <div>
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">LIST</h6>
+                        <span class="text-sm">Show all task types</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </li>
 
-        <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" title="Back to Home Page" data-bs-toggle="tooltip" data-bs-placement="bottom">
-          IT Task manager
-        </a>
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+              Tasks
+              <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-animation dropdown-lg dropdown-lg-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
 
-        <div id="navigation" class="d-flex align-items-center" style="min-height: 5rem;">
-          <ul class="navbar-nav w-100">
-            <li class="nav-item">
-              {% include "includes/search_form.html" %}
-            </li>
-          </ul>
-        </div>
+            </ul>
+          </li>
 
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
+              Users
+              <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-animation dropdown-lg dropdown-lg-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
+
+            </ul>
+          </li>
+
+          <li class="nav-item ms-lg-auto">
+            {% include "includes/search_form.html" %}
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
   </div>
 </div></div>
