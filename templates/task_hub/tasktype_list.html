@@ -25,7 +25,7 @@
 
       <div class="row p-2">
         {% for task_type in tasktype_list %}
-          <a href="#" class="col-6">
+          <a href="{% url 'task-hub:task-type-detail' pk=task_type.id %}" class="col-6">
             <div class="row justify-content-between move-on-hover m-2 border-radius-xl bg-white blur shadow-lg p-2">
               <div class="col lead">{{ task_type.name}}</div>
               <div class="col lead text-end"><i class="fas fa-arrow-right me-1"></i></div>
