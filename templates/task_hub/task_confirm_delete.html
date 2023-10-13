@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-12 text-end">
           <input type="submit" value="Delete" class="btn btn-lg btn-outline-secondary">
-          <a href="{% url 'task-hub:task-list' %}" class="btn btn-lg bg-gradient-primary text-white">Cancel</a>
+          <a href="{% url 'task-hub:task-detail' pk=object.id %}" class="btn btn-lg bg-gradient-primary text-white">Cancel</a>
         </div>
       </div>
     </form>
