@@ -69,5 +69,16 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
 
 
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = TaskType
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskTypeDetailView, self).get_context_data(**kwargs)
+        num_tasks = self.object.tasks.count()
+        context["num_tasks"] = num_tasks
+
+        return context
+
+
 class CustomLogoutView(LogoutView):
     next_page = '/accounts/login'
