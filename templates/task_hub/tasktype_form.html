@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
+    <div class="row my-3">
+      <div class="col">
+        <div class="d-flex align-items-center">
+          {% if tasktype.name %}<span class="h1 me-2">{{ tasktype.name }}</span>{% endif %}
+          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark h6">{{ object|yesno:"Update the,Create a" }} task type</span>
+        </div>
+      </div>
+    </div>
+
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+
+    <div class="row">
+      <div class="col-md-12 text-end">
+        {% if object %}
+          <a href="{% url 'task-hub:task-type-detail' pk=object.id %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
+          <input type="submit" value="Update" class="btn btn-lg bg-gradient-primary">
+        {% else %}
+          <a href="{% url 'task-hub:task-type-list' %}" class="btn btn-lg btn-outline-secondary">Cancel</a>
+          <input type="submit" value="Create" class="btn btn-lg bg-gradient-primary">
+        {% endif %}
+      </div>
+    </div>
+
+    </form>
+  </div>
+{% endblock %}
