@@ -80,5 +80,13 @@ class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = TaskType
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("task-hub:task-type-detail", kwargs={'pk': self.object.pk})
+
+
 class CustomLogoutView(LogoutView):
     next_page = '/accounts/login'
