@@ -96,5 +96,10 @@ class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse("task-hub:task-type-detail", kwargs={'pk': self.object.pk})
 
 
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("task-hub:task-type-list")
+
+
 class CustomLogoutView(LogoutView):
     next_page = '/accounts/login'
