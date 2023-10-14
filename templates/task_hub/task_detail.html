@@ -63,7 +63,7 @@
               <div class="col-3">{{ assignee.position }}</div>
               <div class="col-3">{{ assignee.first_name }}</div>
               <div class="col-3">{{ assignee.last_name }}</div>
-              <div class="col-3"><a class="link-primary" href="#"><div><span>{{ assignee.username }}</span></div></a></div>
+              <div class="col-3"><a class="link-primary" href="{% url 'task-hub:worker-detail' pk=assignee.id %}"><div><span>{{ assignee.username }}</span></div></a></div>
               <hr class="horizontal dark">
             {% endfor %}
           </div>
