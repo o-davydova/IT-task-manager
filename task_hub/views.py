@@ -123,3 +123,14 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         if form.is_valid():
             return queryset.filter(username__icontains=form.cleaned_data["username"])
         return queryset
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerDetailView, self).get_context_data(**kwargs)
+        num_tasks = self.object.tasks.count()
+        context["num_tasks"] = num_tasks
+
+        return context
