@@ -19,6 +19,7 @@ class Worker(AbstractUser):
     class Meta:
         verbose_name = "worker"
         verbose_name_plural = "workers"
+        ordering = ["position", ]
 
     def __str__(self):
         return f"{self.position} ({self.first_name} {self.last_name})"
