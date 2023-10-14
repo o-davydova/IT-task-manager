@@ -17,7 +17,7 @@
       <div class="row align-items-center">
         <p class="card-text text-muted">
         {% if worker.is_staff %}
-          <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Status">staff</span>
+          <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark">staff</span>
         {% endif %}
           <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Status">active</span>
           <br><span>{{ worker.email }}</span>
@@ -63,9 +63,9 @@
       <div class="row align-items-center">
         <p class="card-text text-white">
         {% if worker.is_staff %}
-          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Assigned to you">staff</span>
+          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white">staff</span>
         {% endif %}
-          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Assigned to you">inactive</span>
+          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Status">inactive</span>
           <br><span class="text-white">{{ worker.email }}</span>
         {% if worker.tasks.count %}
           <br><span class="text-white">Tasks: {{ worker.tasks.count }}</span>
