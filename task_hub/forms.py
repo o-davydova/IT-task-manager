@@ -56,3 +56,17 @@ class TaskSearchForm(forms.Form):
             }
         )
     )
+
+
+class WorkerSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control blur",
+                "placeholder": "🔍︎ Search by username"
+            }
+        )
+    )
