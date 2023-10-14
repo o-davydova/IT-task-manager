@@ -1,0 +1,92 @@
+{% if worker.is_active %}
+  <div class="col-4 mb-3"><div class="card border-radius-xl blur shadow-lg">
+    <div class="card-header py-0 px-2 d-flex align-items-center justify-content-center" style="height: 5rem;">
+      <div class="row align-items-center justify-content-between w-100">
+        <div class="col my-0">
+          <span>{{ worker.first_name }}</span> <span>{{ worker.last_name }}</span>
+          <br>
+          <a class="text-bold link-primary mt-0 cursor-pointer">{{ worker.username }}</a>
+        </div>
+        <div class="col text-end my-0">
+          <span class="badge bg-gradient-primary my-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Position">{{ worker.position }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body bg-gray-100 py-2" style="height: 8rem;">
+      <div class="row align-items-center">
+        <p class="card-text text-muted">
+        {% if worker.is_staff %}
+          <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Status">staff</span>
+        {% endif %}
+          <span class="badge text-light my-2 p-1 border border-1 border-dark border-radius-md text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Status">active</span>
+          <br><span>{{ worker.email }}</span>
+        {% if worker.tasks.count %}
+          <br><span>Tasks: {{ worker.tasks.count }}</span>
+        {% else %}
+          <br><span>No tasks yet</span>
+        {% endif %}
+          <br><span><i class="fas fa-calendar mt-2"></i> Joined on: {{ worker.date_joined }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer bg-gray-100 pt-0 pb-3">
+      <div class="row">
+        <a href="#" class="text-primary text-md-end icon-move-right">
+{#                  <a href="{% url 'task-hub:worker-detail' pk=worker.id %}" class="text-primary text-md-end icon-move-right">#}
+          View details
+          <i class="fas fa-arrow-right me-1"></i>
+        </a>
+      </div>
+    </div>
+  </div></div>
+
+{% else %}
+<div class="col-4 mb-3"><div class="card border-radius-xl blur shadow-sm opacity-4">
+    <div class="bg-secondary card-header text-white py-0 px-2 d-flex align-items-center justify-content-center" style="height: 5rem;">
+      <div class="row align-items-center w-100">
+        <div class="col my-0">
+          <span>{{ worker.first_name }}</span> <span>{{ worker.last_name }}</span>
+          <br>
+          <a class="text-bold link-dark mt-0 cursor-pointer">{{ worker.username }}</a>
+        </div>
+        <div class="col text-end my-0">
+          <span class="badge bg-white text-dark my-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Position">{{ worker.position }}</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="horizontal bg-dark dark p-0 m-0">
+
+    <div class="card-body bg-secondary py-2" style="height: 8rem;">
+      <div class="row align-items-center">
+        <p class="card-text text-white">
+        {% if worker.is_staff %}
+          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Assigned to you">staff</span>
+        {% endif %}
+          <span class="badge text-light my-2 p-1 border border-1 border-radius-md text-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Assigned to you">inactive</span>
+          <br><span class="text-white">{{ worker.email }}</span>
+        {% if worker.tasks.count %}
+          <br><span class="text-white">Tasks: {{ worker.tasks.count }}</span>
+        {% else %}
+          <br><span class="text-white">No tasks</span>
+        {% endif %}
+          <br><span class="text-white"><i class="fas fa-calendar mt-2"></i> {{ worker.date_joined }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer  bg-secondary pt-0 pb-3">
+      <div class="row">
+        <a href="#" class="text-white text-md-end icon-move-right">
+{#        <a href="{% url 'task-hub:worker-detail' pk=worker.id %}" class="text-white text-md-end icon-move-right">#}
+          View details
+          <i class="fas fa-arrow-right me-1"></i>
+        </a>
+      </div>
+    </div>
+  </div></div>
+
+
+{% endif %}
