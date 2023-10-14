@@ -13,6 +13,10 @@ class IndexView(generic.View):
         return HttpResponseRedirect(reverse_lazy("task-hub:task-list"))
 
 
+class CustomLogoutView(LogoutView):
+    next_page = '/accounts/login'
+
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
 
@@ -101,10 +105,6 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("task-hub:task-type-list")
 
 
-class CustomLogoutView(LogoutView):
-    next_page = '/accounts/login'
-
-
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
 
@@ -134,3 +134,8 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         context["num_tasks"] = num_tasks
 
         return context
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("task-hub:worker-list")
