@@ -1,5 +1,3 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import forms, AuthenticationForm, UserChangeForm, UserCreationForm
 
@@ -48,7 +46,7 @@ class WorkerCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "position", )
+        fields = UserCreationForm.Meta.fields + ("email", "first_name", "last_name", "position", )
 
     def save(self, commit=True):
         user = super(WorkerCreationForm, self).save(commit=False)
