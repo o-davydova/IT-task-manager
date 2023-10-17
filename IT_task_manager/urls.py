@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from task_hub.forms import UserLoginForm
-from task_hub.views import CustomLogoutView
-
+from task_hub.forms import WorkerLoginForm
+from task_hub.views import CustomLogoutView, RegisterView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("task_hub.urls", namespace="task-hub")),
-    path("accounts/login/", auth_views.LoginView.as_view(authentication_form=UserLoginForm), name='login'),
-    path("accounts/logout/", CustomLogoutView.as_view(), name='logout'),
+    path("accounts/login/", auth_views.LoginView.as_view(authentication_form=WorkerLoginForm), name="login"),
+    path("accounts/logout/", CustomLogoutView.as_view(), name="logout"),
+    path("register/", RegisterView.as_view(), name="register"),
 ]
