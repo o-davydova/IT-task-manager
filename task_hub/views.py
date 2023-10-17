@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
 from django.http import HttpResponseRedirect
@@ -106,7 +107,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
-    model = Worker
+    model = get_user_model()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
@@ -118,7 +119,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         form = WorkerSearchForm(self.request.GET)
-        queryset = Worker.objects.all().select_related("position")
+        queryset = get_user_model().objects.all().select_related("position")
 
         if form.is_valid():
             return queryset.filter(username__icontains=form.cleaned_data["username"])
@@ -126,7 +127,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Worker
+    model = get_user_model()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerDetailView, self).get_context_data(**kwargs)
@@ -137,5 +138,5 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Worker
+    model = get_user_model()
     success_url = reverse_lazy("task-hub:worker-list")
