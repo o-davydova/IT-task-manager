@@ -92,16 +92,6 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-animation dropdown-lg mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
               <div class="d-none d-lg-block">
-{#                <li class="nav-item ">#}
-{#                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:worker-create' %}">#}
-{#                    <div class="d-flex">#}
-{#                      <div>#}
-{#                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">ADD</h6>#}
-{#                        <span class="text-sm">Create new worker</span>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </a>#}
-{#                </li>#}
                 <li class="nav-item ">
                   <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:worker-list' %}">
                     <div class="d-flex">
@@ -112,13 +102,40 @@
                     </div>
                   </a>
                 </li>
+                <li class="nav-item ">
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:worker-update' pk=user.id %}">
+                    <div class="d-flex">
+                      <div>
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">EDIT PROFILE</h6>
+                        <span class="text-sm">Update your account information</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:worker-delete' pk=user.id %}">
+                    <div class="d-flex">
+                      <div>
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">DELETE PROFILE</h6>
+                        <span class="text-sm">Delete your account</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
               </div>
             </ul>
           </li>
-
           <li class="nav-item ms-lg-auto">
             {% include "includes/search_form.html" %}
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item ms-lg-auto">
+              <a class="nav-link nav-link-icon me-2" href="{% url 'logout' %}">
+                <i class="fa fa-sign-out me-1" aria-hidden="true"></i>
+                <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Logout">Logout</p>
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>
