@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_hub.forms import TaskForm, TaskSearchForm, WorkerSearchForm, WorkerCreationForm
+from task_hub.forms import TaskForm, TaskSearchForm, WorkerSearchForm, WorkerCreationForm, WorkerChangeForm
 from task_hub.models import Task, TaskType
 
 
@@ -141,6 +141,14 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         context["num_tasks"] = num_tasks
 
         return context
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = get_user_model()
+    form_class = WorkerChangeForm
+
+    def get_success_url(self):
+        return reverse("logout")
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
