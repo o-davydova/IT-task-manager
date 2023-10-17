@@ -63,7 +63,7 @@ class WorkerSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "class": "form-control blur",
+                "class": "form-control form-control-lg blur",
                 "placeholder": "🔍︎ Search by username"
             }
         )
@@ -96,7 +96,7 @@ class TaskSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "class": "form-control blur",
+                "class": "form-control form-control-lg blur",
                 "placeholder": "🔍︎ Search by task name"
             }
         )
