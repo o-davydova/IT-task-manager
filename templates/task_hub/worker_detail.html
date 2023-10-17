@@ -12,6 +12,7 @@
           </div>
         </div>
 
+      {% if user.is_superuser or worker == user %}
         <div class="col-sm-1 text-end">
           <div class="dropdown">
             <button class="navbar-toggler shadow-none collapsed" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,12 +22,14 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </span>
             </button>
+
             <ul class="dropdown-menu dropdown-menu-end shadow-blur px-2 py-3 me-n3" aria-labelledby="dropdownMenuButton">
-{#              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:task-update' pk=task.id %}"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>#}
+              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:worker-update' pk=worker.id %}"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>
               <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:worker-delete' pk=worker.id %}"><i class="fa fa-trash-o  me-1" aria-hidden="true"></i> Delete </a></li>
             </ul>
           </div>
         </div>
+      {% endif %}
       </div>
 
       <div class="row">
