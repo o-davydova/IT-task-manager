@@ -5,8 +5,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_hub.forms import TaskForm, TaskSearchForm, WorkerSearchForm
-from task_hub.models import Task, TaskType, Worker
+from task_hub.forms import TaskForm, TaskSearchForm, WorkerSearchForm, WorkerCreationForm
+from task_hub.models import Task, TaskType
 
 
 class IndexView(generic.View):
@@ -15,7 +15,13 @@ class IndexView(generic.View):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = '/accounts/login'
+    next_page = reverse_lazy("login")
+
+
+class RegisterView(generic.CreateView):
+    form_class = WorkerCreationForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("login")
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
