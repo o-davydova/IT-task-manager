@@ -143,6 +143,11 @@ class PositionCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse("task-hub:position-detail", kwargs={'pk': self.object.pk})
 
 
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("task-hub:position-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
 
