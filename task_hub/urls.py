@@ -16,6 +16,7 @@ from task_hub.views import (
     WorkerDetailView,
     WorkerDeleteView,
     WorkerUpdateView,
+    PositionListView,
 )
 
 urlpatterns = [
@@ -34,6 +35,7 @@ urlpatterns = [
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
     path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
+    path("position/", PositionListView.as_view(), name="position-list"),
 ]
 
 app_name = "task-hub"
