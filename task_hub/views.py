@@ -80,10 +80,6 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
 
 
-class PositionListView(LoginRequiredMixin, generic.ListView):
-    model = Position
-
-
 class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
 
@@ -114,6 +110,21 @@ class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("task-hub:task-type-list")
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+
+
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionDetailView, self).get_context_data(**kwargs)
+        num_workers = self.object.workers.count()
+        context["num_workers"] = num_workers
+
+        return context
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
