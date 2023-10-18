@@ -71,16 +71,37 @@
                     </div>
                   </a>
                 </li>
+              </div>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+              Positions
+              <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-animation dropdown-lg mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
+              <div class="d-none d-lg-block">
 {#                <li class="nav-item ">#}
-{#                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:task-list' %}">#}
+{#                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:position-create' %}">#}
 {#                    <div class="d-flex">#}
 {#                      <div>#}
-{#                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">ASSIGNED</h6>#}
-{#                        <span class="text-sm">Show your tasks</span>#}
+{#                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">ADD</h6>#}
+{#                        <span class="text-sm">Create new position</span>#}
 {#                      </div>#}
 {#                    </div>#}
 {#                  </a>#}
 {#                </li>#}
+                <li class="nav-item ">
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="{% url 'task-hub:position-list' %}">
+                    <div class="d-flex">
+                      <div>
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">LIST</h6>
+                        <span class="text-sm">Show all positions</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
               </div>
             </ul>
           </li>
