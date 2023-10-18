@@ -6,7 +6,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_hub.forms import TaskForm, TaskSearchForm, WorkerSearchForm, WorkerCreationForm, WorkerChangeForm
-from task_hub.models import Task, TaskType
+from task_hub.models import Task, TaskType, Position
 
 
 class IndexView(generic.View):
@@ -78,6 +78,10 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
 
 
 class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
