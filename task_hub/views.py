@@ -127,6 +127,14 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("task-hub:position-detail", kwargs={'pk': self.object.pk})
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
 
