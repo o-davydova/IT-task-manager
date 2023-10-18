@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+  <section>
+    <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
+
+      <div class="row mt-3">
+        <div class="col">
+          <span class="h3 me-3 text-gradient text-primary">
+            <i class="fa fa-bookmark-o"></i> {{ position.name }}{{ num_workers|pluralize }}
+          </span>
+        </div>
+
+        <div class="col-sm-1 text-end">
+          <div class="dropdown">
+            <button class="navbar-toggler shadow-none collapsed" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-blur px-2 py-3 me-n3" aria-labelledby="dropdownMenuButton">
+{#              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:position-update' pk=position.id %}"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>#}
+{#              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:position-delete' pk=position.id %}"><i class="fa fa-trash-o  me-1" aria-hidden="true"></i> Delete </a></li>#}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center">
+          <span class="text-gradient text-primary h5 mt-4 mb-3">Worker{{ num_workers|pluralize }}: {{ num_workers }}</span>
+          <div class="col">
+            <div class="row lead h5">
+                <div class="col-3">First name</div>
+                <div class="col-3">Last name</div>
+                <div class="col-3">Username</div>
+            </div>
+            <div class="row lead">
+              {% for worker in position.workers.all %}
+                <div class="col-3">{{ worker.first_name }}</div>
+                <div class="col-3">{{ worker.last_name }}</div>
+                <div class="col-3"><a class="link-primary" href="{% url 'task-hub:worker-detail' pk=worker.id %}"><div><span>{{ worker.username }}</span></div></a></div>
+                <hr class="horizontal dark">
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-3 mb-3">
+        <a href="{% url 'task-hub:position-list' %}" class="lead text-primary icon-move-left">
+          <i class="fas fa-arrow-left me-1"></i>
+          Back to the position list
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
