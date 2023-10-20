@@ -1,0 +1,23 @@
+{% if is_paginated %}
+  <div class="container mt-n6 pe-5 py-2">
+    <div class="row justify-content-between">
+      <div class="col">
+      <ul class="pagination pagination-primary justify-content-end">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a href="?page= {{ page_obj.previous_page_number }}" class="page-link"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+          </li>
+        {% endif %}
+        <li class="page-item active">
+          <span class="page-link text-white">{{ page_obj.number }}</span>
+        </li>
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a href="?page= {{ page_obj.next_page_number }}" class="page-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endif %}

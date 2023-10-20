@@ -26,6 +26,7 @@ class RegisterView(generic.CreateView):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
@@ -78,6 +79,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
+    paginate_by = 8
 
 
 class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
@@ -114,6 +116,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
+    paginate_by = 8
 
 
 class PositionDetailView(LoginRequiredMixin, generic.DetailView):
@@ -150,6 +153,7 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
