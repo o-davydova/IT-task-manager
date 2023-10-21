@@ -33,17 +33,18 @@ class TaskType(models.Model):
 
 
 class Task(models.Model):
-    LOW = "4"
-    MEDIUM = "3"
-    HIGH = "2"
-    URGENT = "1"
+    class TaskPriority:
+        low = "4"
+        medium = "3"
+        high = "2"
+        urgent = "1"
 
-    PRIORITY_CHOICES = [
-        (LOW, "Low"),
-        (MEDIUM, "Medium"),
-        (HIGH, "High"),
-        (URGENT, "Urgent"),
-    ]
+    PRIORITY_CHOICES = (
+        (TaskPriority.low, "Low"),
+        (TaskPriority.medium, "Medium"),
+        (TaskPriority.high, "High"),
+        (TaskPriority.urgent, "Urgent"),
+    )
 
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -52,7 +53,7 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=6,
         choices=PRIORITY_CHOICES,
-        default=MEDIUM,
+        default=TaskPriority.medium,
     )
     task_type = models.ForeignKey(
         TaskType,
