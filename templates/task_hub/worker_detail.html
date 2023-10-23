@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+  <section>
+    <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3">
+
+      <div class="row mt-3">
+        <div class="col">
+          <div class="d-flex align-items-center">
+            <span class="h3 me-3 text-gradient text-primary">
+              <i class="fa fa-bookmark-o"></i> {{ worker.first_name }} {{ worker.last_name }}
+            </span>
+          </div>
+        </div>
+
+      {% if user.is_superuser or worker == user %}
+        <div class="col-sm-1 text-end">
+          <div class="dropdown">
+            <button class="navbar-toggler shadow-none collapsed" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-blur px-2 py-3 me-n3" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:worker-update' pk=worker.id %}"><i class="fa fa-pencil  me-1" aria-hidden="true"></i> Edit </a></li>
+              <li><a class="dropdown-item border-radius-md" href="{% url 'task-hub:worker-delete' pk=worker.id %}"><i class="fa fa-trash-o  me-1" aria-hidden="true"></i> Delete </a></li>
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Position">{{ worker.position }}</span>
+          <span class="badge p-1 border border-2 border-dark border-radius-md text-dark me-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Status">{% if worker.is_active %}active{% else %}inactive{% endif %}</span>
+          {% if worker.is_superuser %}<span class="badge p-1 border border-2 border-dark border-radius-md text-dark me-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Status">superuser</span>{% endif %}
+        </div>
+      </div>
+
+      <hr class="horizontal dark">
+      <div class="row mt-3">
+        <div class="col">
+          <span class="h5 text-dark">Username: </span>
+          <span class="h5 text-dark text-bolder">{{ worker.username }}</span>
+        </div>
+        <p class="lead"></p>
+      </div>
+
+      <div class="row justify-content-md-center">
+          {% include 'includes/tasks.html' %}
+      </div>
+
+      <div class="row mt-3 mb-3">
+        <a href="{% url 'task-hub:worker-list' %}" class="lead text-primary icon-move-left">
+          <i class="fas fa-arrow-left me-1"></i>
+          Back to the task list
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

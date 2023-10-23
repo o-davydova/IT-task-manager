@@ -1,0 +1,37 @@
+{% if object.tasks.all %}
+  <div class="col mt-4">
+  <span class="h4 text-gradient text-primary">Task{{ num_tasks|pluralize }}: {{ num_tasks }}</span>
+    <div class="row lead h5 mt-3">
+        <div class="col-3">Name</div>
+        <div class="col-3">Task type</div>
+        <div class="col-2 text-center">Completed</div>
+        <div class="col-3">Deadline</div>
+        <div class="col-1"></div>
+    </div>
+    {% for task in object.tasks.all %}
+      <a href="{% url 'task-hub:task-detail' pk=task.id %}" class="link-dark">
+        <div class="row lead">
+          <div class="col-3">{{ task.name }}</div>
+          <div class="col-3">{{ task.task_type }}</div>
+          <div class="col-2 text-center">
+          <span><i class="fa-solid fa-circle-xmark"></i>
+            {% if task.is_completed %}<i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="far fa-times-circle text-danger"></i>
+            {% endif %}
+          </span>
+          </div>
+          <div class="col-3">{{ task.deadline }}</div>
+          <div class="col-1">
+            <i class="fas fa-angle-double-right" data-bs-toggle="tooltip" data-bs-placement="left" title="Show more"></i>
+          </div>
+        </div>
+      </a>
+      <hr class="horizontal dark">
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="col mt-4 text-center">
+    <h5>Oh, it looks like there are no tasks here yet! <i class="far fa-frown-open"></i></h5>
+    <a href="{% url 'task-hub:task-create' %}" class="btn btn-sm btn-primary bg-gradient-primary">Add Task</a>
+  </div>
+{% endif %}

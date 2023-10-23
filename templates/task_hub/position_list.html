@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+  <section>
+    <div class="container border-radius-xl mt-n12 px-5 mx-auto blur shadow-blur p-3 pb-sm-6">
+      <div class="row justify-content-between">
+        <div class="col">
+          <h3 class="ms-3 mt-2 mb-3 text-dark"><span><i class="fas fa-stream"></i></span> Position list</h3>
+        </div>
+
+        <div class="col-1">
+          <div class="row">
+            <div class="col text-end">
+              <a class="btn btn-white p-2 text-center" href="{% url 'task-hub:position-create' %}">
+                <p class="d-inline text-sm z-index-1 font-weight-bold"
+                   data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add new position"
+                   data-bs-original-title="Add new position">
+                  <i class="p-2 text-lg text-dark m-0 fa fa-plus" aria-hidden="true"></i>
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        {% for position in position_list %}
+          <a href="{% url 'task-hub:position-detail' pk=position.id %}" class="col-6">
+            <div class="row justify-content-between move-on-hover m-2 border-radius-xl bg-white blur shadow-lg p-2">
+              <div class="col lead">{{ position.name}}</div>
+              <div class="col lead text-end"><i class="fas fa-arrow-right me-1"></i></div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

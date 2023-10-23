@@ -1,0 +1,17 @@
+{% if task.get_priority_display == "Low" %}
+  <span class="badge bg-gradient-secondary m-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task priority" style="min-width: 5rem">
+    {{ task.get_priority_display }}
+  </span>
+{% elif task.get_priority_display == "Medium" %}
+  <span class="badge bg-gradient-primary m-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task priority" style="min-width: 5rem">
+    {{ task.get_priority_display }}
+  </span>
+{% elif task.get_priority_display == "High" %}
+  <span class="badge bg-gradient-warning m-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task priority" style="min-width: 5rem">
+    {{ task.get_priority_display }}
+  </span>
+{% elif task.get_priority_display == "Urgent" %}
+  <span class="badge bg-gradient-danger m-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task priority" style="min-width: 5rem">
+    {{ task.get_priority_display }}
+  </span>
+{% endif %}
