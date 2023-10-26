@@ -27,7 +27,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 DEBUG = "RENDER" not in os.environ
 
-ALLOWED_HOSTS = ["127.0.0.1", "https://it-task-manager-byfm.onrender.com", ]
+ALLOWED_HOSTS = ["127.0.0.1", "it-task-manager-byfm.onrender.com", ]
 
 
 # Application definition
@@ -130,10 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = "staticfiles/"
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
-
-STATIC_ROOT = "staticfiles/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
